@@ -49,5 +49,5 @@ float pid_derivada(){
 }
 
 float pid_control(float kp, float ki, float kd){
-  return kp*pid_prop() + ki * pid_integral() + kd*pid_derivada();
+  return kp * pid_prop() + ki * pid_integral() + kd * pid_derivada();
 }
