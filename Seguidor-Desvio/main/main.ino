@@ -2,8 +2,9 @@
 #define KI 1
 #define KD 1
 
-const unsigned int ultrassonic[] = {};//trig,echo, ... trig[N],echo[N]
-const unsigned int irs[] = {1,1,1};//pinos(trocar os valores...)
+const int ultrassonic[] = {};//trig,echo, ... trig[N],echo[N]
+const int irs[] = {1,1,1};//pinos(trocar os valores...)
+const int sharp_pin = A0;
 
 void setup() 
 {
@@ -16,6 +17,7 @@ void setup()
     else
       pinMode(ultrassonic[i], INPUT);
   }
+  pinMode(sharp_pin, INPUT);
   set_erro(readIR(irs[0]));//trocar o argumento
 }
 
