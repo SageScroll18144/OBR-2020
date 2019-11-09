@@ -1,5 +1,9 @@
+#define KP 1
+#define KI 1
+#define KD 1
+
 const unsigned int ultrassonic[] = {};//trig,echo, ... trig[N],echo[N]
-const unsigned int irs[] = {};
+const unsigned int irs[] = {1,1,1};//pinos(trocar os valores...)
 
 void setup() 
 {
@@ -12,7 +16,7 @@ void setup()
     else
       pinMode(ultrassonic[i], INPUT);
   }
-
+  set_erro(readIR(irs[0]));//trocar o argumento
 }
 
 void loop() 

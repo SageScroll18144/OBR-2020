@@ -1,6 +1,3 @@
-#define KP 1
-#define KI 1
-#define KD 1
 #define IDEAL 1023
 
 unsigned int last_time = 0;
