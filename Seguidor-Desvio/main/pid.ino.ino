@@ -25,24 +25,25 @@ void set_erro(float val) {//implmentar no setup para que a queue não fique vazi
 void set_time(){
   last_time = millis();
 }
+unsigned int get_time(){
+  return last_time;
+}
 
 float pid_prop() {
   return ERRO[0];
 }
 
 float pid_integral(){
-  
   float erro_ac = 0.0f;
   for(int i = 0; i < sizeof(ERRO)/sizeof(float); i++){
     erro_ac += ERRO[i]; 
   }
   
   return erro_ac;
-  
 }
 
 float pid_derivada(){
-  return (ERRO[0]-ERRO[1])/(millis()-last_time);
+  return (ERRO[0]-ERRO[1])/(millis()-get_time());
 }
 
 float pid_control(float kp, float ki, float kd){
