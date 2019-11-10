@@ -4,7 +4,18 @@ unsigned int last_time = 0;
 
 float ERRO[20];
 
-void update_erro(float val)
+//Utilizar para dois sensores. Caso a aplicação estiver com apenas 1 sensor, ignore está função e use apenas o método erro_push.
+void pid_update(unsigned int sleft, unsigned int sright){
+  float erro = 0;
+  
+  erro += sright;
+  erro -= sleft;
+
+  erro_push(erro);
+  
+}
+
+void erro_push(float val)
 {
   for (int i = 1; i < sizeof(ERRO)/sizeof(float); i++) {
     float a = ERRO[0];
