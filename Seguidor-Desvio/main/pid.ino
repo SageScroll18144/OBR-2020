@@ -1,23 +1,35 @@
-#define IDEAL 1023
+#define ERROR_LENGTH 20
 
-unsigned int last_time = 0;
+float ERRO[ERROR_LENGTH];
+unsigned long time_last = 0;
 
-float ERRO[20];
-
-//Utilizar para dois sensores. Caso a aplicação estiver com apenas 1 sensor, ignore está função e use apenas o método erro_push.
-void pid_update(unsigned int sleft, unsigned int sright){
-  float erro = 0;
-  
-  erro += sright;
-  erro -= sleft;
-
-  erro_push(erro);
-  
+void set_time(){
+  time_last = millis();
 }
 
-void erro_push(float val)
-{
-  for (int i = 1; i < sizeof(ERRO)/sizeof(float); i++) {
+unsigned long get_time(){
+  return time_last;
+}
+void err_init(){
+  for(int i = 0; i < ERROR_LENGTH; i++){
+    ERRO[i] = 0;
+  }
+}
+void pid_update(unsigned int raw_left, unsigned int raw_right) {
+  float norm_left = pid_normalize(raw_left);
+  float norm_right = pid_normalize(raw_right);
+
+  float erro = 0;
+
+  erro -= norm_left;
+  erro += norm_right;
+
+  pid_push(erro);
+
+}
+
+void pid_push(float val) {
+  for (int i = 1; i < ERROR_LENGTH; i++) {
     float a = ERRO[0];
     float b = ERRO[i];
     ERRO[0] = a + b;
@@ -25,38 +37,40 @@ void erro_push(float val)
     ERRO[0] = a - b;
   }
   ERRO[0] = val;
+
 }
 
-void set_erro(float val) {//implmentar no setup para que a queue não fique vazia
-  for (int i = 0; i < sizeof(ERRO)/sizeof(float); ++i) {
-    ERRO[i] = IDEAL - val;
-  }
+// P_W, peso da proporcio, D_W, peso da derivada, I_W peso da integral.
+float pid_actuation(float p_w, float d_w, float i_w) {
+  return (p_w * pid_prop()) + (d_w * pid_derivada()) + (i_w * pid_integral());
 }
 
-void set_time(){
-  last_time = millis();
-}
-unsigned int get_time(){
-  return last_time;
-}
-
+// Erro proporcional básico do pid
 float pid_prop() {
   return ERRO[0];
 }
 
-float pid_integral(){
+// Derivada dp pid, equivalente a velocidade em que a linha se move.
+float pid_derivada() {
+  return (ERRO[0]-ERRO[1])/(get_time()-millis());
+}
+
+// Integral do pid, equivalente ao erro acumulado em ERROR_LENGTH ciclos.
+float pid_integral() {
+
   float erro_ac = 0.0f;
-  for(int i = 0; i < sizeof(ERRO)/sizeof(float); i++){
-    erro_ac += ERRO[i]; 
+
+  for(unsigned int i = 0; i < ERROR_LENGTH; i++) {
+    erro_ac += ERRO[i];
   }
-  
-  return erro_ac;
+
+  return erro_ac/ (float)ERROR_LENGTH;
 }
 
-float pid_derivada(){
-  return (ERRO[0]-ERRO[1])/(millis()-get_time());
-}
+float pid_normalize(unsigned int data) {
+  unsigned int MAX = (1<<10);
 
-float pid_control(float kp, float ki, float kd){
-  return kp * pid_prop() + ki * pid_integral() + kd * pid_derivada();
+  float normalizado = (float)(MAX-data)/(float)MAX;
+
+  return 1.0f - normalizado;
 }

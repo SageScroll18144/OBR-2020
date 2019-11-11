@@ -18,10 +18,14 @@ void setup()
       pinMode(ultrassonic[i], INPUT);
   }
   pinMode(sharp_pin, INPUT);
-  set_erro(readIR(irs[0]));//trocar o argumento
+  err_init();
 }
 
 void loop() 
 {
+  //set_time();
+  //pid_update(sensor1, sensor2);
+  //float x = pid_actuation(3.0, 5.0, 2.0);
+  //x -> valor PID; Implementar no algoritmo proporcional do motor(pós essa etapa). 
   
 }
