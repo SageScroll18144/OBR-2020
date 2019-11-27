@@ -1,3 +1,9 @@
+/*
+ * FALTA IMPLEMENTAR AS FUNÇÕES DOS MOTORES!
+ * 
+ * 
+ */
+
 void PID(float ideal){
  pid_update(analogRead(irs[2]), analogRead(irs[5]));
  float x = pid_actuation(3.0, 5.0, 2.0);
