@@ -1,20 +1,13 @@
 import cv2
 import numpy as np
-
-
-def circle(img, dp, minDist, param_1, param_2, minR, maxR):
-	img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-	circles = cv2.HoughCircles(img, cv2.HOUGH_GRADIENT, dp, minDist, param1=param_1, param2=param_2, minRadius=minR, maxRadius=maxR)
-	
-	return circles
-
+import circle_segmentation as cs
 
 PATH = '/home/felipe/Imagens/ballb.png'  
 
 frame = cv2.imread(PATH)
 
 #Alterar os valores para detecção da bola prateada.
-circles = circle(frame, 1, 260, 30, 65, 0, 0)
+circles = cs.circle(frame, 1, 260, 30, 65, 0, 0)
 if circles is not None:
     for x, y, r in circles[0]:
         cv2.circle(frame,(x,y),r,(0,255,0),2)
