@@ -41,7 +41,7 @@ cv2.Canny(img, param_1, param_1/2)
 ```
 - _param_2_: 
 
-Valor do acumulador de th
+Valor do acumulador de threshold
 
 - _minR_:
 
