@@ -4,7 +4,7 @@ Robô para a OBR de 2020
 
 ## Estrutura
 
-A estrutura do robô pode ser encontrada no link a seguir: https://www.tinkercad.com/things/atXvg4NdNgS-cool-stantia-wolt
+A estrutura do robô pode ser encontrada no link a seguir: _https://www.tinkercad.com/things/atXvg4NdNgS-cool-stantia-wolt._
 
 ## Componentes eletrônicos
 
@@ -16,11 +16,13 @@ A estrutura do robô pode ser encontrada no link a seguir: https://www.tinkercad
 - (x1) Matriz IR;
 - (x1) Sharp IR;
 - (x4) Ultrassônico;
-- (x4) Motores DC com caixa de redução.
+- (x4) Motores DC com caixa de redução;
+- (x1) Bateria Bateria polímero de lítio;
+- (X1) Power Bank.
 
 ## Código
 
-O código está sendo escrito em duas linguagens. Python3(Resgate) e C++(Seguidor de Linha e Desvio de Obstáculo)
+O código está sendo escrito em duas linguagens. Python3(Resgate) e C++(Seguidor de Linha e Desvio de Obstáculo).
 
 ### Resgate
 
@@ -33,7 +35,7 @@ circle(img, dp, minDist, param_1, param_2, minR, maxR)
 ```
 - _img_:
 
-A imagem que será feita a leitura dos circulos
+A imagem que será feita a leitura dos circulos.
 
 - _dp_:
 
@@ -51,7 +53,7 @@ cv2.Canny(img, param_1, param_1/2)
 ```
 - _param_2_: 
 
-Valor do acumulador de threshold
+Valor do acumulador de threshold.
 
 - _minR_:
 
@@ -70,7 +72,7 @@ Com o objetivo de evitar a colisão entre o robô e a parede está sendo usado q
 A ideia inicial é similar a detecção de vitimas, porém vamos procurar um retângulo.
 
 #### Garra
-Ainda em desenvolvimento
+Ainda em desenvolvimento.
 
 #### Repositório
 No último estágio do robô temos um "Guarda vitimas". No final as vitimas são descartadas na área de Resgate.
@@ -82,11 +84,11 @@ Para o seguidor de linha o robô é dividido em duas etapas:
 Este é o algoritmo usado para que o robô realize a tarefa de seguir a linha. P -> Proporcional. I -> Integral. D -> Derivada. Ele diminui a oscilação na realização da tarefa, reduzindo erros e fornecendo estabilidade.
 
 - _P(Proporcional)_:
-Alcança o 'setpoint' multiplicando uma constante(KP) pela leitura atual do sensor
+Alcança o 'setpoint' multiplicando uma constante(KP) pela leitura atual do sensor.
 - _I(Integral)_:
 Diminui a oscilação do controlador _P_ multiplicando por uma constante(KI) a somatória do ERRO(SetPoint - Valor_De_Leitura_Atual).
 - _D(Derivada)_:
-Atinge o objetivo do _I_ de maneira mais veloz, calculando a taxa de variação da leitura no tempo e multiplicando por uma constante(KD)
+Atinge o objetivo do _I_ de maneira mais veloz, calculando a taxa de variação da leitura no tempo e multiplicando por uma constante(KD).
 
 ```cpp
  double error = IDEAL - analogRead(A0);
@@ -100,7 +102,7 @@ Atinge o objetivo do _I_ de maneira mais veloz, calculando a taxa de variação 
   lastMeasure = analogRead(0);//trocar pelo sensor IR[N]
   lastTime = millis();
 ```
-*_Implementação do Algoritmo PID_*
+**_Implementação do Algoritmo PID_**.
 
 
 Este algoritmo está implementado com a matriz IR, que realiza a leitura da linha com base na taxa de reflexão da luz infravermelha emitida por um LED da placa.
@@ -108,7 +110,9 @@ Este algoritmo está implementado com a matriz IR, que realiza a leitura da linh
 #### Intersecções e beco sem saída
 No circuito o robô deve obedercer os seguintes casos condicionais:
 ![Screenshot](casegreen.png)
-Para a detecção do quadrado verde estamos usando o sensor TCS230
+**_Retirado do manual oficial da OBR:_** _<http://www.obr.org.br/manuais/OBR2019_MP_ManualRegionalEstadual.pdf>_
+
+Para a detecção do quadrado verde estamos usando o sensor TCS230.
 
 ### Desvio de Obstáculo
 Para o desvio optamos utilizar o Sharp IR para a leitura da parede. O desenho do robô favorece para que ele ande para todos os lados, assim a programação do artefato nesta etapa não fica complicada, pois ele apenas anda para um dos lado(sendo escolha da equipe, tomando como interpretação o regulamento da OBR), segue em frente e anda para o lado contrário da primeira etapa deste procedimento.
