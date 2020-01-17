@@ -31,7 +31,7 @@ Para a identificação das vitimas estamos utilizando a biblioteca de visão com
 
 Este é o método para a identificação das vitimas, que retorna uma tupla contendo o par ordenado da posição do centro do circulo e a magnitude do raio.
 ```python
-circle(img, dp, minDist, param_1, param_2, minR, maxR)
+def circle(img, dp, minDist, param_1, param_2, minR, maxR)
 ```
 - _img_:
 
