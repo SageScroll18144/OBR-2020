@@ -39,12 +39,16 @@ while True:
 	movement = "S"
     #byte from send. It's a form to say 'you can send... '
     
-	distance = [ult.read(ult_sen[0], ult_sen[1])]
+	distance = [ult.read(ult_sen[0], ult_sen[1]), ult.read(ult_sen[2], ult_sen[3]), ult.read(ult_sen[4], ult_sen[5]), ult.read(ult_sen[6], ult_sen[7])]
 
-	if distance[0] < 0:
-		b.send("CASO SE TIVER PERTO DA PAREDE")
-	elif distance[1] < 0:
-		b.send("parede")
+	if distance[0] < 5:
+		b.send("F")
+	elif distance[1] < 5:
+		b.send("B")
+	elif distance[2] < 5:
+		b.send("R")
+	elif distance[3] < 5:
+		b.send("L")
 	elif cs.hasABall(frame, coordinate_black_ball_x, coordinate_black_ball_r) == 0 or cs.hasABall(frame, coordinate_gray_ball_x, coordinate_gray_ball_r) == 0:
 		b.send("F")
 	elif cs.hasABall(frame, coordinate_black_ball_x, coordinate_black_ball_r) == 1 or cs.hasABall(frame, coordinate_gray_ball_x, coordinate_gray_ball_r) == 1:
