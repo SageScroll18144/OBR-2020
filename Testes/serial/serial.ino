@@ -35,7 +35,7 @@ void setup()
       pinMode(ultrassonic[i], INPUT);
   }
   pinMode(sharp_pin, INPUT);
-  //err_init();
+  Serial.begin(9600);
 }
 
 void loop() 
