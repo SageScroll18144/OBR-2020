@@ -14,5 +14,9 @@ def hasABall(img, x, r, limite):
 	elif x < center:
 		euclidian_distance = center - (x + r)
 
-	return (euclidian_distance <= limite)
-
+	if euclidian_distance <= limite:
+		return 0
+	elif euclidian_distance > limite and x >= center:
+		return 1
+	elif euclidian_distance > limite and x < center:
+		return -1
