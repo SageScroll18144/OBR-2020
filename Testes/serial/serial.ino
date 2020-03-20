@@ -43,7 +43,8 @@ void loop()
   if(Serial.available() > 0){
     String x = Serial.readString();
     Serial.println(x);
+    Serial.write(1);
   }
-  Serial.write(1);
+  
     
 }
