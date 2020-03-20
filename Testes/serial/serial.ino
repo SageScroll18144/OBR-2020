@@ -44,5 +44,6 @@ void loop()
     String x = Serial.readString();
     Serial.println(x);
   }
-  
+  Serial.write(1);
+    
 }
