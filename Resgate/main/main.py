@@ -1,18 +1,15 @@
-import RPi.GPIO as GPIO
-import time 
-import ultrassonic as ult
+import serial as little_board
 
-GPIO.setmode(GPIO.BCM)
+#it's just an example. Change please the name mainly for job with SO Windown and Linux
+name_board = '/dev/ttyUSB0'
+value_of_baudRate= 9600
 
-ult_sen = [0,1] #trig[0], echo[0], trig[1], echo[1], ... , trig[n], echo[n]
+b = little_board.Board(name_board, value_of_baudRate)
 
-for i in range(len(ult_sen)):
-	if((i%2) == 0):
-		GPIO.setup(ult_sen[i], GPIO.OUT)
-	else:
-		GPIO.setup(ult_sen[i], GPIO.IN)
+b.begin()
 
-#ex.:
-distance = ult.read(ult_sen[0], ult_sen[1])
-
-GPIO.cleanup()
+while True:
+	movement = "S"
+    #byte from send. It's a form to say 'you can send... '
+    b.send(movement)
+b.finalize()

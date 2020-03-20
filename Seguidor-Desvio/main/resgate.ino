@@ -1,22 +1,21 @@
 void resgate(){
-
   while(true){
-    if(Serial.available() > 0){
       String x = Serial.readString();
-      if(x == "S"){
-        
+      if(x == "SL"){//giro para esquerda
+        spinRobot('L');
+      }else if(x == "SR"){//giro para direita
+        spinRobot('R');
       }else if(x == "F"){//frente
-        
+        forward();
       }else if(x == "B"){//trás
-        
+        backward();
       }else if(x == "L"){//esquerda
-        
+        go_left();
       }else if(x == "R"){//direita
-        
+        go_right();
       }else if(x == "E"){//sair
-        
+        break;
       }
-    }
     
   }
 
