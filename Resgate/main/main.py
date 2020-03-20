@@ -43,8 +43,13 @@ while True:
 
 	if distance[0] < 0:
 		b.send("CASO SE TIVER PERTO DA PAREDE")
-	else:
-		b.send("SE TIVER PERTO DA BOLA")
-
+	elif distance[1] < 0:
+		b.send("parede")
+	elif cs.hasABall(frame, coordinate_black_ball_x, coordinate_black_ball_r) == 0 or cs.hasABall(frame, coordinate_gray_ball_x, coordinate_gray_ball_r) == 0:
+		b.send("F")
+	elif cs.hasABall(frame, coordinate_black_ball_x, coordinate_black_ball_r) == 1 or cs.hasABall(frame, coordinate_gray_ball_x, coordinate_gray_ball_r) == 1:
+		b.send("SL")
+	elif cs.hasABall(frame, coordinate_black_ball_x, coordinate_black_ball_r) == -1 or cs.hasABall(frame, coordinate_gray_ball_x, coordinate_gray_ball_r) == -1:
+		b.send("SR")
 b.finalize()
 GPIO.cleanup()
