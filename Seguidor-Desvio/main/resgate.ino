@@ -16,6 +16,10 @@ void resgate(){
       }else if(x == "E"){//sair
         break;
       }
+      
+      if(sharp_read() < 4){
+        Serial.write(1);
+      }
     
   }
 

@@ -44,7 +44,7 @@ void loop()
   if(Serial.available() > 0){
     resgate();
   }
-  else if(sharp_read() == 5){
+  else if(sharp_read() <= 5){
     go_left();
     delay(1000);
     forward();
