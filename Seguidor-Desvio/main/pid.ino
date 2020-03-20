@@ -1,3 +1,5 @@
+/*
+
 #define ERROR_LENGTH 20
 
 float ERRO[ERROR_LENGTH];
@@ -73,4 +75,4 @@ float pid_normalize(unsigned int data) {
   float normalizado = (float)(MAX-data)/(float)MAX;
 
   return 1.0f - normalizado;
-}
+}*/

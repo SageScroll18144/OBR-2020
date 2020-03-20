@@ -17,7 +17,7 @@ double P, I, D;
 
 const int ultrassonic[] = {1,1,1,1};//trig,echo, ... trig[N],echo[N]
 const int irs[] = {1,1,1,1,1,1,1,1};//pinos(trocar os valores...)
-const int sharp_pin = A0;
+const int sharp_pin = A1;
 
 const int dir[] = {51,53,45,43,41,39,47,49};//pinos de direção dos motores
                                             //F[0]; B[0];F[1];B[1];...;F[N];B[N]
@@ -40,18 +40,32 @@ void setup()
 
 void loop() 
 {
-  //set_time();
-  //pid_update(sensor1, sensor2);
-  //float x = pid_actuation(3.0, 5.0, 2.0);
-  //x -> valor PID; Implementar no algoritmo proporcional do motor(pós essa etapa). 
-  double error = IDEAL - analogRead(A0);
+ if(sharp_read() == 5){
+    go_left();
+    delay(1000);
+    forward();
+    delay(2300);
+    go_right();
+    delay(1000);
+    for(int i = 0;i<4; i++){
+      stopRobot(i);
+    }
+    delay(1000);
+  }
+  else{
+    //set_time();
+    //pid_update(sensor1, sensor2);
+    //float x = pid_actuation(3.0, 5.0, 2.0);
+    //x -> valor PID; Implementar no algoritmo proporcional do motor(pós essa etapa). 
+    double error = IDEAL - analogRead(A0);
+    
+    P = KP * error;
+    I += KI * error;
+    D = KD * ((analogRead(A0) - lastMeasure)/(millis() - lastTime));
   
-  P = KP * error;
-  I += KI * error;
-  D = KD * ((analogRead(A0) - lastMeasure)/(millis() - lastTime));
-
-  double PID = P+I+D;
-
-  lastMeasure = analogRead(0);//trocar pelo sensor IR[N]
-  lastTime = millis();
+    double PID = P+I+D;
+  
+    lastMeasure = analogRead(A0);//trocar pelo sensor IR[N]
+    lastTime = millis();
+  }
 }
