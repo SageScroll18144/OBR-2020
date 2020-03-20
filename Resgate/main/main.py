@@ -30,8 +30,10 @@ for i in range(len(ult_sen)):
 # loop
 while True:
 	ret, frame = cam.read()	
-	circles = cs.circle(frame, 1, 260, 30, 65, 0, 0)
-	coordinate_white_ball_x, coordinate_white_ball_y, coordinate_white_ball_r = circles[0]
+	circles_white = cs.circle(frame, 1, 260, 30, 65, 0, 0)
+	circles_black = cs.circle(frame, 1, 260, 30, 65, 0, 0)
+	coordinate_white_ball_x, coordinate_white_ball_y, coordinate_white_ball_r = circles_white[0]
+	coordinate_black_ball_x, coordinate_black_ball_y, coordinate_black_ball_r = circles_black[0]
 	movement = "S"
     #byte from send. It's a form to say 'you can send... '
     
