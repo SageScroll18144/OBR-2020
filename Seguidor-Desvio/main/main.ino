@@ -40,7 +40,11 @@ void setup()
 
 void loop() 
 {
- if(sharp_read() == 5){
+
+  if(Serial.available() > 0){
+    resgate();
+  }
+  else if(sharp_read() == 5){
     go_left();
     delay(1000);
     forward();
