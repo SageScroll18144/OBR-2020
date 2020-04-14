@@ -23,6 +23,8 @@ const int dir[] = {51,53,45,43,41,39,47,49};//pinos de direção dos motores
                                             //F[0]; B[0];F[1];B[1];...;F[N];B[N]
 const int motores[] = {A1,A2,A6,A7};//pinos de velocidade
 
+boolean canI = true;
+
 void setup() 
 {
   for(int i = 0; i < sizeof(irs)/sizeof(int); i++){
@@ -42,7 +44,18 @@ void loop()
 {
 
   if(Serial.available() > 0){
-    resgate();
+    canI = false;
+    int input = Serial.read();
+    if(input == 1){//get ball
+      resgate();
+    }else if(input == 2){//giro
+      spinRobot('L');
+    }else if(input == 3){//esquerda
+      go_left();
+    }else if(input == 4){//direita
+      go_right();
+    }
+    
   }
   else if(sharp_read() <= 5){
     go_left();
@@ -56,7 +69,7 @@ void loop()
     }
     delay(1000);
   }
-  else{
+  else if(canI == true){
     //set_time();
     //pid_update(sensor1, sensor2);
     //float x = pid_actuation(3.0, 5.0, 2.0);
