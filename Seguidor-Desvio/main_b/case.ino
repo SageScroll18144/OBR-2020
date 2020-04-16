@@ -39,5 +39,13 @@ void desvio(){
   delay(1000);
 }
 void resgate(){
+  while(true){
+    forward();
+    if(sharp_read() <= 5)
+      break;
+    get_ball();
+  }
+}
+void get_ball(){
   
 }
