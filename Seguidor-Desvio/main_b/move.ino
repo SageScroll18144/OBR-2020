@@ -38,12 +38,28 @@ void right(){
   }
 }
 void spin_l(){
-  digitalWrite(dir[motors[0]*2], 0);
-  digitalWrite(dir[motors[0]*2+1], 1);
-  digitalWrite(dir[motors[1]*2], 0);
-  digitalWrite(dir[motors[1]*2+1], 1);
-  digitalWrite(dir[motors[2]*2], 1);
-  digitalWrite(dir[motors[2]*2+1], 0);
-  digitalWrite(dir[motors[3]*2], 1);
-  digitalWrite(dir[motors[3]*2+1], 0);
+  digitalWrite(dir[motores[0]*2], 0);
+  digitalWrite(dir[motores[0]*2+1], 1);
+  digitalWrite(dir[motores[1]*2], 0);
+  digitalWrite(dir[motores[1]*2+1], 1);
+  digitalWrite(dir[motores[2]*2], 1);
+  digitalWrite(dir[motores[2]*2+1], 0);
+  digitalWrite(dir[motores[3]*2], 1);
+  digitalWrite(dir[motores[3]*2+1], 0);
+}
+void spin_r(){
+  digitalWrite(dir[motores[0]*2], 1);
+  digitalWrite(dir[motores[0]*2+1], 0);
+  digitalWrite(dir[motores[1]*2], 1);
+  digitalWrite(dir[motores[1]*2+1], 0);
+  digitalWrite(dir[motores[2]*2], 0);
+  digitalWrite(dir[motores[2]*2+1], 1);
+  digitalWrite(dir[motores[3]*2], 0);
+  digitalWrite(dir[motores[3]*2+1], 1);
+}
+void stopRobot(){
+  for(int i = 0; i < sizeof(dir)/sizeof(int); i++){
+    digitalWrite(dir[i], 0);
+    digitalWrite(dir[i], 0);
+  }
 }

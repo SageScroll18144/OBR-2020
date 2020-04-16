@@ -1,11 +1,10 @@
 //#include "SparkFun_MMA8452Q.h"
 #define IR_F A3
+
 //MOTORES
 const int dir[] = {51,53,45,43,41,39,47,49};//pinos de direção dos motores
 const int motores[] = {A1,A2,A6,A7};
-//ULTRASSONICO
-//int trig = 5;
-//int echo = 6;
+
 const int ultPin[] = {5,34,0,6,36,0};//trig;trig;trig;echo;echo;echo
 
 //RGB

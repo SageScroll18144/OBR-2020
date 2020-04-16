@@ -1,5 +1,5 @@
 #define STACK_LENGTH 10
-
+/*
 int valuesAcl[STACK_LENGTH];
 
 unsigned long long int tempo = 0;
@@ -40,4 +40,4 @@ void acl_init(){
   for(int i = 0; i < STACK_LENGTH; i++){
     valuesAcl[i] = 0;
   }
-}
+}*/
