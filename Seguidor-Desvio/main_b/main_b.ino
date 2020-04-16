@@ -1,5 +1,6 @@
 //#include "SparkFun_MMA8452Q.h"
 #define IR_F A3
+#define SHARP A16
 
 //MOTORES
 const int dir[] = {51,53,45,43,41,39,47,49};//pinos de direção dos motores
@@ -29,6 +30,7 @@ int blue1 = 0;
 //CONSTANTES
 #define RB 600 // Valor lido pelo sensor analógico
 
+boolean canI = true;
 
 //MMA8452Q accel;  
 
@@ -64,6 +66,28 @@ void loop(){
   else{
     PIDD();
   }*/
-  PID(5);
+  if(Serial.available() > 0){
+    canI = false;
+    int input = (int)Serial.read();
+    if(input == 1){//get ball
+      resgate();
+    }else if(input == 2){//giro
+      spin_l();
+    }else if(input == 3){//esquerda
+      left();
+    }else if(input == 4){//direita
+      right();
+    }
+    
+  }
+  else if(sharp_read() <= 5){
+    desvio();
+  }/* QUADRADO VERDE
+  else if(){
+    
+  }*/
+  else if(canI==true){
+    PID(5);
+  }
   Serial.println(ultrassonicRead(0));
 }

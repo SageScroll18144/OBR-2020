@@ -5,6 +5,9 @@ int readAnLeft(){
 int readAnRight(){
   return analogRead(A15);
 }
+int sharp_read(){
+  return analogRead(SHARP);
+}
 //=======================FUNÇÃO DO ULTRASSONICO===============================
 int ultrassonicRead(int sensor){//Retorna um valor inteiro com o valor da distância lida pelo ultrassônico
   long duracao;

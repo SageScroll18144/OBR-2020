@@ -38,3 +38,6 @@ void desvio(){
   stopRobot();
   delay(1000);
 }
+void resgate(){
+  
+}
