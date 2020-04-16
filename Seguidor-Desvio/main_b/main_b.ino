@@ -1,4 +1,4 @@
-#include "SparkFun_MMA8452Q.h"
+//#include "SparkFun_MMA8452Q.h"
 #define IR_F A3
 //MOTORES
 const int dir[] = {51,53,45,43,41,39,47,49};//pinos de direção dos motores
@@ -31,7 +31,7 @@ int blue1 = 0;
 #define RB 600 // Valor lido pelo sensor analógico
 
 
-MMA8452Q accel;  
+//MMA8452Q accel;  
 
 void setup(){
   for(int i = 0; i < sizeof(irs)/sizeof(int); i++){
@@ -51,8 +51,8 @@ void setup(){
       else
         pinMode(ultPin[i], OUTPUT);
   }
-  accel.init();
-  acl_init();
+  //accel.init();
+  //acl_init();
   
 }
 
