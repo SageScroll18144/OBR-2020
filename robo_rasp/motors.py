@@ -24,6 +24,22 @@ class Control:
         for i in motors:
             GPIO.output(directions[i*2], 0)
             GPIO.output(directions[i*2+1], 1)
+    def left(self):
+        for i in range(len(motors)):
+            if(i%2) == 0:
+                GPIO.output(directions[motors[i]*2], 0)
+                GPIO.output(directions[motors[i]*2+1], 1)
+            else:
+                GPIO.output(directions[motors[i]*2], 1)
+                GPIO.output(directions[motors[i]*2+1], 0)
+    def right(self):
+        for i in range(len(motors)):
+            if(i%2) == 0:
+                GPIO.output(directions[motors[i]*2], 1)
+                GPIO.output(directions[motors[i]*2+1], 0)
+            else:
+                GPIO.output(directions[motors[i]*2], 0)
+                GPIO.output(directions[motors[i]*2+1], 1)
 
 motors = np.array([1,1,1])
 directions = np.array([1,1,1])
