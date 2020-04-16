@@ -40,9 +40,21 @@ class Control:
             else:
                 GPIO.output(directions[motors[i]*2], 0)
                 GPIO.output(directions[motors[i]*2+1], 1)
+    def spin_l(self):
+        GPIO.output(directions[motors[0]*2], 0)
+        GPIO.output(directions[motors[0]*2+1], 1)
+        GPIO.output(directions[motors[1]*2], 0)
+        GPIO.output(directions[motors[1]*2+1], 1)
+        GPIO.output(directions[motors[2]*2], 1)
+        GPIO.output(directions[motors[2]*2+1], 0)
+        GPIO.output(directions[motors[3]*2], 1)
+        GPIO.output(directions[motors[3]*2+1], 0)
 
-motors = np.array([1,1,1])
-directions = np.array([1,1,1])
-control = Control(motors, directions)
-control.print_motors()
-
+'''
+#TESTE
+if __name__ == "main":
+    motors = np.array([1,1,1])
+    directions = np.array([1,1,1])
+    control = Control(motors, directions)
+    control.print_motors()
+'''
