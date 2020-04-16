@@ -68,14 +68,23 @@ void loop(){
   }*/
   if(Serial.available() > 0){
     canI = false;
-    int input = (int)Serial.read();
-    if(input == 1){//get ball
+    String input = Serial.readString();
+    if(input.equals("GB")){//get ball
       resgate();
-    }else if(input == 2){//giro
+    }else if(input.equals("SL")){//giro
       spin_l();
-    }else if(input == 3){//esquerda
+    }else if(input.equals("SR")){//giro
+      spin_r();
+    }
+    else if(input.equals("F")){//esquerda
+      forward();
+    }
+    else if(input.equals("B")){//esquerda
+      backward();
+    }
+    else if(input.equals("L")){//esquerda
       left();
-    }else if(input == 4){//direita
+    }else if(input.equals("R")){//direita
       right();
     }
     
