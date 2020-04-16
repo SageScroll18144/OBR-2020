@@ -1,12 +1,12 @@
 //======================FUNÇÕES DOS SENSORES ANALOG==========================
 int readAnLeft(){
-  return analogRead(A1);
+  return analogRead(A8);
 }                           // ACIMA DE 600 É PRETO(const RB)
 int readAnRight(){
   return analogRead(A15);
 }
 int sharp_read(){
-  return analogRead(SHARP);
+  return (6762/((analogRead(SHARP)-9))) - 4;
 }
 //=======================FUNÇÃO DO ULTRASSONICO===============================
 int ultrassonicRead(int sensor){//Retorna um valor inteiro com o valor da distância lida pelo ultrassônico

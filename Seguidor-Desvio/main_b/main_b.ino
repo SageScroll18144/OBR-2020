@@ -1,6 +1,6 @@
 //#include "SparkFun_MMA8452Q.h"
 #define IR_F A3
-#define SHARP A16
+#define SHARP A5
 
 //MOTORES
 const int dir[] = {51,53,45,43,41,39,47,49};//pinos de direção dos motores
